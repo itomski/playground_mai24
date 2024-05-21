@@ -6,6 +6,9 @@ public class NextWuerfelbecher {
 
     private static final Random randGen = new Random();
 
+    private NextWuerfelbecher() {
+    }
+
     public static int wurf(int augen) {
         return randGen.nextInt(augen) + 1;
     }
