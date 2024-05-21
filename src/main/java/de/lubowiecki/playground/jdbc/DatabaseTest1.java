@@ -24,7 +24,8 @@ public class DatabaseTest1 {
             // ResultSet: Ergebnis-Menge
             ResultSet results = stmt.executeQuery("SELECT * FROM fahrzeuge"); // Abfrage absetzen
 
-            while(results.next()) { // Ergebnisse verarbeiten
+            // Daten verarbeiten
+            while(results.next()) {
                 String zeile = results.getString("kennzeichen") + ", " +
                                 results.getString("marke") + ", " +
                                 results.getString("typ") + ", " +
