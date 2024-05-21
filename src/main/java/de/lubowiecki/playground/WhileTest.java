@@ -1,5 +1,7 @@
 package de.lubowiecki.playground;
 
+import java.util.Random;
+
 public class WhileTest {
 
     public static void main(String[] args) {
@@ -33,7 +35,9 @@ public class WhileTest {
     }
 
     static boolean oneMoreTime() {
-        int rand = (int)(Math.random() * 6) + 1;
+        //int rand = (int)(Math.random() * 6) + 1;
+        Random randGen = new Random();
+        int rand = randGen.nextInt(6) + 1;
         return rand > 3;
     }
 }
