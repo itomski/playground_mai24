@@ -1,5 +1,8 @@
 package de.lubowiecki.playground;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -15,6 +18,10 @@ public class ConsoleInputUtils {
     // new: Instanzierung des Scanner Objekts
     // System.in: Quelle die der Scanner beobachten soll (Konsole)
     private static final Scanner scanner = new Scanner(System.in);
+
+    private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm");
+
 
     private ConsoleInputUtils() { // Eine Instanzierung der Klasse ist nicht mehr möglich
     }
@@ -70,6 +77,9 @@ public class ConsoleInputUtils {
     }
 
     public static int inputInt(String label, int min, int max, String errorMsg) {
+
+        // TODO: Gesonderte ErrorMessages für die Validierung
+
         while(true) {
             System.out.print(label + ": ");
             try {
@@ -99,6 +109,33 @@ public class ConsoleInputUtils {
             */
             catch(RuntimeException ex) {
                 scanner.nextLine(); // fix
+                System.out.println(errorMsg);
+            }
+        }
+    }
+
+    public static LocalDate inputDate(String label, String errorMsg) {
+        while(true) {
+            System.out.print(label + ": ");
+            try {
+                String dateStr = scanner.next();
+                return LocalDate.parse(dateStr, DATE_FMT);
+            }
+            catch(RuntimeException ex) {
+                //ex.printStackTrace(); // Infos über die Exception
+                System.out.println(errorMsg);
+            }
+        }
+    }
+
+    public static LocalTime inputTime(String label, String errorMsg) {
+        while(true) {
+            System.out.print(label + ": ");
+            try {
+                String dateStr = scanner.next();
+                return LocalTime.parse(dateStr, TIME_FMT);
+            }
+            catch(RuntimeException ex) {
                 System.out.println(errorMsg);
             }
         }
